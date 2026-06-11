@@ -51,6 +51,14 @@ console.log("2. Per-page specifics");
   ok(/<\/div>\s*<span class="fig-core">/.test(index), "index: orbital core sits OUTSIDE the spin group (stable 3D sphere)");
   ok(!index.includes('class="tick">○'), "index: off-centre ○ glyph removed from system radios");
   ok(count(index, 'class="tick"><svg') >= 4, "index: system radios use a centred svg circle");
+  ok(index.includes('id="unify"') && index.includes("chip-frag"), "index: fragmentation→companion block present");
+  ok(count(index, 'class="chip-frag"') === 7, "index: all seven scattered channels listed");
+  ok(index.includes("One continuous companion"), "index: unify block names the single companion");
+  ok(index.includes('id="value"') && count(index, 'class="value__row"') === 4, "index: value model has four rows");
+  ok(index.includes("value__head-money") && index.includes(">Problem<") && index.includes(">Platform<"),
+     "index: Problem → Platform → Value flow header present");
+  ok(["AI Concierge", "Patient Dashboard", "Doctor Profiles", "International Care"].every((f) => index.includes(`value__feature">${f}<`)),
+     "index: all four platform features named in the value model");
 
   const dash = read("dashboard.html");
   ok(count(dash, 'class="plate plate--') === 2, "dashboard: both plaques moved here");
