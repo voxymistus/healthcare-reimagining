@@ -1,0 +1,978 @@
+/* =========================================================================
+   Future Healthcare Experience — futuristic layer
+   Cursor particles · neon glow · 3D parallax · morphing text · aurora band.
+
+   Tuned to the existing jade / warm-paper system. The "wow" is concentrated
+   so the calm sections keep breathing. Everything degrades under
+   prefers-reduced-motion (see the reset block at the foot of this file and
+   the global one in styles.css).
+   ========================================================================= */
+
+:root {
+  --neon:        #6EE7B7;            /* luminous mint — the "future" tint */
+  --neon-soft:   #34D399;
+  --glow-mint:   rgba(110, 231, 183, 0.35);
+  --glow-jade:   rgba(28, 122, 105, 0.28);
+}
+
+/* -------------------------------------------------------------------------
+   1. Calm cursor halo — one soft glow that drifts after the cursor.
+      A single composited element (transform-only): effectively free.
+   ------------------------------------------------------------------------- */
+.fx-halo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease, ease);
+  will-change: transform;
+}
+.fx-halo::before {        /* wide, very soft ambient glow */
+  content: "";
+  position: absolute;
+  width: 440px; height: 440px;
+  left: -220px; top: -220px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(110, 231, 183, 0.13) 0%,
+    rgba(52, 211, 153, 0.07) 38%,
+    transparent 68%);
+}
+.fx-halo::after {         /* quiet inner shimmer */
+  content: "";
+  position: absolute;
+  width: 90px; height: 90px;
+  left: -45px; top: -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(110, 231, 183, 0.16), transparent 70%);
+}
+.fx-halo.is-on { opacity: 1; }
+
+/* -------------------------------------------------------------------------
+   2. Neon glow utilities (restrained on light, vivid on dark)
+   ------------------------------------------------------------------------- */
+.glow-text {
+  text-shadow: 0 0 18px var(--glow-mint), 0 0 46px var(--glow-jade);
+}
+.glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(127, 216, 196, 0.45),
+    0 0 32px var(--glow-mint),
+    inset 0 0 22px rgba(127, 216, 196, 0.12);
+}
+.btn--accent { box-shadow: 0 12px 34px var(--glow-jade); }
+.btn--accent:hover { box-shadow: 0 14px 44px var(--glow-mint), 0 0 30px var(--glow-jade); }
+
+/* ---- Avenir wordmark IS the logo — large, bold, high-contrast ---- */
+.brand__name {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 2.3vw, 2.2rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.0;
+}
+.brand__name small {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: var(--muted);
+  margin-top: 6px;
+  max-width: 44ch;
+  white-space: nowrap;   /* one line in the bar — the ≤940px rule re-allows wrapping for the mobile dropdown */
+}
+
+/* ---- Sticky nav: dark in both states (over dark heroes + dark glass) ---- */
+/* the wordmark carries a mint glow + dark drop so it reads clearly on any backdrop */
+.nav .brand__name {
+  color: #fff;
+  text-shadow: 0 0 22px rgba(110, 231, 183, 0.45), 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.nav .brand__name small { color: rgba(255, 255, 255, 0.7); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45); }
+.nav .nav__links a { color: rgba(255, 255, 255, 0.82); }
+.nav .nav__links a .ch { color: rgba(255, 255, 255, 0.65); }
+.nav .nav__links a:hover { color: #fff; background: rgba(255, 255, 255, 0.10); }
+.nav .nav__links a[aria-current="page"] { color: var(--neon); }
+.nav .nav__links a[aria-current="page"] .ch { color: var(--neon); }
+.nav .nav__cta { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.26); }
+.nav .nav__cta:hover { background: var(--accent); border-color: var(--accent); }
+.nav .nav__toggle { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.28); }
+.nav .nav__toggle span,
+.nav .nav__toggle span::before,
+.nav .nav__toggle span::after { background: #fff; }
+
+/* scrolled: deep-green glass instead of light paper */
+.nav.scrolled {
+  background: rgba(8, 21, 18, 0.85);
+  border-bottom-color: rgba(110, 231, 183, 0.14);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+/* dark dropdown panel for the mobile menu (same 1240px collapse as styles.css) */
+@media (max-width: 1240px) {
+  .nav__menu {
+    inset: 96px 0 auto 0;
+    background: rgba(9, 23, 19, 0.97);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ---- Footer — deep-green night theme ---- */
+.footer {
+  background: radial-gradient(120% 110% at 50% 0%, #102822 0%, #0a1916 55%, #07110e 100%);
+  border-top: 1px solid rgba(110, 231, 183, 0.14);
+  color: rgba(255, 255, 255, 0.78);
+}
+.footer .brand__name { color: #fff; font-size: clamp(2rem, 2.6vw, 2.5rem); text-shadow: 0 0 26px rgba(110, 231, 183, 0.4); }
+.footer .brand__name small { color: rgba(255, 255, 255, 0.62); font-size: 0.96rem; text-shadow: none; }
+.footer h4 { color: rgba(255, 255, 255, 0.7); }
+.footer ul a { color: rgba(255, 255, 255, 0.72); }
+.footer ul a:hover { color: var(--neon); }
+.footer .muted { color: rgba(255, 255, 255, 0.58); }
+.footer .concept-flag {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
+  box-shadow: none;
+}
+.footer .concept-flag .dot { background: var(--neon); }
+.footer__note { border-top-color: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.65); }
+.footer__agency-h { font-family: var(--serif); font-size: 1.14rem; color: #fff; margin-top: 22px; }
+.footer__agency-p { margin-top: 10px; max-width: 42ch; font-size: 0.92rem; }
+
+/* ---- Inter-chapter "next" plaque — same night theme ---- */
+.next-chapter {
+  background: radial-gradient(130% 160% at 18% 0%, #133029 0%, #0b1d18 58%, #081411 100%);
+  border-color: rgba(110, 231, 183, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease),
+              transform var(--t) var(--ease);
+}
+.next-chapter:hover {
+  border-color: rgba(110, 231, 183, 0.42);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 36px var(--glow-jade);
+  transform: translateY(-2px);
+}
+.next-chapter .nc-k { color: var(--neon); }
+.next-chapter h3 { color: #fff; }
+.next-chapter .btn--ghost { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.next-chapter:hover .btn--ghost { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+/* ---- Keyboard focus stays visible on dark surfaces ---- */
+.section--night :focus-visible,
+.hero :focus-visible,
+.footer :focus-visible,
+.nav :focus-visible,
+.next-chapter:focus-visible,
+.videoband :focus-visible,
+.aurora :focus-visible {
+  outline-color: var(--neon);
+}
+
+/* ---- Disabled buttons read as disabled ---- */
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---- Quiet blueprint grid behind every light surface ---- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(28, 122, 105, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 122, 105, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(28, 122, 105, 0.10) 1px, transparent 1.6px);
+  background-size: 46px 46px, 46px 46px, 46px 46px;
+}
+/* let the grid breathe through tinted sections (were solid fills) */
+.bg-wash { background: rgba(21, 24, 29, 0.028); }
+.bg-tint { background: linear-gradient(180deg, rgba(28, 122, 105, 0.07), rgba(28, 122, 105, 0) 78%); }
+
+/* -------------------------------------------------------------------------
+   3. Hero — dark "night" stage with a big 3D orbital centrepiece
+   ------------------------------------------------------------------------- */
+.hero {
+  perspective: 1300px;
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  background: radial-gradient(125% 120% at 50% -10%, #16323c 0%, #0e1a20 55%, #0a1216 100%);
+}
+.hero::before {   /* aurora glow wash */
+  content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(42% 55% at 18% 20%, rgba(110, 231, 183, 0.22), transparent 62%),
+    radial-gradient(40% 52% at 82% 26%, rgba(52, 211, 153, 0.16), transparent 62%);
+}
+.hero::after {    /* receding perspective grid floor */
+  content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(127, 216, 196, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 216, 196, 0.08) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: radial-gradient(120% 80% at 50% 100%, #000 18%, transparent 70%);
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 100%, #000 18%, transparent 70%);
+  transform: perspective(600px) rotateX(60deg) translateY(42%) scale(1.5);
+  transform-origin: bottom center;
+  opacity: 0.55;
+}
+
+/* the orb layer reacts to the cursor (vars set in effects.js) — recoloured for dark */
+.hero__orbs {
+  transform: translate3d(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 22px), 0);
+}
+.hero .orb--1 { background: radial-gradient(circle at 30% 30%, rgba(110, 231, 183, 0.5), transparent 70%); opacity: 0.5; }
+.hero .orb--2 { background: radial-gradient(circle at 50% 50%, rgba(28, 122, 105, 0.55), transparent 70%); opacity: 0.5; }
+.hero .orb--3 { background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.30), transparent 70%); opacity: 0.45; }
+
+/* light text + accent treatment on the dark hero */
+.hero .display, .hero h1 { color: #fff; }
+.hero .lead, .hero .hero__sub { color: rgba(255, 255, 255, 0.76); }
+.hero .eyebrow { color: var(--neon); }
+.hero .eyebrow::before { background: var(--neon); }
+.hero em { color: var(--neon); font-style: italic; }
+.hero-meta { border-top-color: rgba(255, 255, 255, 0.14); }
+.hero-meta div .n { color: #fff; }
+.hero-meta div .l { color: rgba(255, 255, 255, 0.55); }
+.hero .btn--primary { background: var(--accent); color: #fff; box-shadow: 0 10px 30px var(--glow-jade); }
+.hero .btn--primary:hover { background: var(--neon); color: #06241c; }
+.hero .btn--ghost { border-color: rgba(255, 255, 255, 0.28); color: #fff; }
+.hero .btn--ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+/* two-column hero: copy on the left, a big 3D stage on the right */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.02fr;
+  gap: clamp(28px, 4.5vw, 64px);
+  align-items: center;
+  perspective: 1100px;
+}
+.hero__copy .display { max-width: 15ch; }
+.hero__copy .hero__sub { max-width: 46ch; }
+
+.hero__stage {
+  position: relative;
+  min-height: clamp(440px, 44vw, 620px);
+}
+/* a slightly smaller stage for the inner-page heroes */
+.hero__stage--sm { min-height: clamp(340px, 34vw, 480px); }
+
+/* soft luminous halo behind the figure */
+.hero__halo {
+  position: absolute; left: 50%; top: 44%;
+  width: 124%; aspect-ratio: 1; max-width: 760px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(110, 231, 183, 0.30), transparent 64%);
+  filter: blur(10px);
+  z-index: 0;
+  transform: translate(-50%, -50%) translate3d(calc(var(--mx, 0) * -16px), calc(var(--my, 0) * -14px), 0);
+}
+
+/* === Big 3D figure — its own 3D context, sits BEHIND the plates ========= */
+.hero__figure {
+  position: absolute; left: 52%; top: 44%;
+  width: clamp(420px, 44vw, 640px); aspect-ratio: 1;
+  z-index: 1;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateX(12deg)
+             rotateY(calc(var(--mx, 0) * 16deg)) rotateX(calc(var(--my, 0) * -8deg));
+}
+/* inner pages: a calmer, smaller centrepiece */
+.hero__stage--sm .hero__figure { width: clamp(320px, 32vw, 460px); top: 48%; left: 50%; }
+.hero__stage--sm .hero__halo { max-width: 560px; top: 48%; }
+
+/* gentle vertical drift so the figure feels alive even with a still cursor */
+.fig-float {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  animation: fig-float 7s var(--ease-soft, ease) infinite alternate;
+}
+@keyframes fig-float {
+  from { transform: translateY(-10px); }
+  to   { transform: translateY(12px); }
+}
+
+.fig-spin { position: absolute; inset: 0; transform-style: preserve-3d; animation: fig-spin 30s linear infinite; }
+/* the orbital core — a glossy 3D orb, lit from the upper-left. It sits OUTSIDE
+   .fig-spin so it stays a stable sphere (a flat disc spun on Y reads as a coin).
+   A tight specular highlight, a smooth lit→shadow body gradient, and inset
+   shading on the far side give it real volume rather than a flat disc. */
+.fig-core {
+  position: absolute; inset: 39%; border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.4) 7%, rgba(255, 255, 255, 0) 21%),
+    radial-gradient(circle at 37% 31%, #e3fff4 0%, #86f0c8 16%, #34d399 38%, #12a578 58%, #0a6b54 78%, #044034 100%);
+  box-shadow:
+    inset -13px -15px 34px rgba(2, 22, 17, 0.72),
+    inset 9px 10px 24px rgba(220, 255, 244, 0.40),
+    0 0 44px var(--neon), 0 0 110px var(--glow-jade);
+  animation: core-pulse 3.2s var(--ease-soft, ease) infinite;
+}
+.fig-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1.5px solid rgba(110, 231, 183, 0.5);
+  box-shadow: 0 0 22px var(--glow-jade), inset 0 0 44px rgba(110, 231, 183, 0.10);
+}
+.fig-ring--a { transform: rotateY(72deg); border-color: rgba(110, 231, 183, 0.6); }
+.fig-ring--b { transform: rotateX(72deg) rotateY(20deg); border-color: rgba(52, 211, 153, 0.5); }
+.fig-ring--c { inset: 9%; transform: rotateX(60deg) rotateY(-32deg); border-color: rgba(127, 216, 196, 0.4); }
+/* glowing nodes that orbit the core */
+.fig-orbit { position: absolute; inset: 0; border-radius: 50%; transform-style: preserve-3d; }
+.fig-orbit--1 { transform: rotateY(72deg); animation: fig-orbit 7s linear infinite; }
+.fig-orbit--2 { transform: rotateX(72deg) rotateY(20deg); animation: fig-orbit 11s linear infinite reverse; }
+.fig-node {
+  position: absolute; top: -7px; left: calc(50% - 7px);
+  width: 14px; height: 14px; border-radius: 50%; background: var(--neon);
+  box-shadow: 0 0 16px var(--neon), 0 0 34px var(--glow-mint);
+}
+@keyframes fig-spin { from { transform: rotateY(0); } to { transform: rotateY(360deg); } }
+@keyframes fig-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes core-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+
+/* === Dark-glass plaques — flat layer ABOVE the figure, at the corners === */
+.plate {
+  position: absolute; z-index: 3;
+  border-radius: 18px;
+  /* no backdrop-filter: blurring the backdrop of a layer that moves with the
+     cursor re-rasterizes every frame — a denser fill reads the same here */
+  background: rgba(13, 24, 28, 0.82);
+  border: 1px solid rgba(127, 216, 196, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: 18px 20px;
+  transform: translate3d(calc(var(--mx, 0) * var(--d, 1) * -22px), calc(var(--my, 0) * var(--d, 1) * -18px), 0);
+  transition: box-shadow 0.4s var(--ease-soft, ease), border-color 0.4s var(--ease-soft, ease);
+}
+.plate:hover { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 34px var(--glow-jade); border-color: rgba(110, 231, 183, 0.4); }
+.plate--vitals { top: 3%; right: -2%; width: 234px; --d: 1.15; }
+.plate--doc    { bottom: 5%; left: -5%; width: 240px; --d: 0.85; }
+
+.plate .pm-h { display: flex; align-items: center; gap: 8px; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.55); font-weight: 600; }
+.plate .pm-h .live { width: 7px; height: 7px; border-radius: 50%; background: #36b37e; box-shadow: 0 0 0 3px rgba(54, 179, 126, 0.22); }
+.plate .pm-big { font-family: var(--serif); font-size: 2.4rem; line-height: 1; color: #fff; margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+.plate .pm-big small { font-size: 0.8rem; color: rgba(255, 255, 255, 0.55); font-family: var(--sans); }
+.plate .pm-big .beat { color: var(--neon); display: inline-flex; animation: beat 1.05s var(--ease-soft, ease) infinite; }
+.plate .ekg2 { width: 100%; height: 48px; margin-top: 6px; overflow: hidden; }
+.plate .ekg2 path {
+  fill: none; stroke: var(--neon); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px var(--glow-mint));
+}
+.plate .pm-row { display: flex; align-items: center; gap: 9px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 0.86rem; color: rgba(255, 255, 255, 0.7); }
+.plate .pm-row svg { width: 15px; height: 15px; color: var(--neon); flex: none; }
+.plate .pm-row b { color: #fff; }
+
+.plate--doc .pd { display: flex; align-items: center; gap: 11px; }
+.plate--doc .pd__av { width: 42px; height: 42px; flex: none; border-radius: 13px; background: linear-gradient(150deg, var(--accent), var(--accent-deep)); color: #fff; display: grid; place-items: center; font-family: var(--serif); box-shadow: 0 0 18px var(--glow-jade); }
+.plate--doc .pd__t b { display: block; font-size: 0.92rem; color: #fff; }
+.plate--doc .pd__t span { font-size: 0.76rem; color: rgba(255, 255, 255, 0.55); }
+.plate--doc .pd__ok { margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--neon); padding: 5px 11px; border-radius: var(--r-pill); background: rgba(110, 231, 183, 0.12); border: 1px solid rgba(110, 231, 183, 0.3); }
+.plate--doc .pd__ok svg { width: 12px; height: 12px; }
+
+/* === Floating light motes drifting through the hero ==================== */
+.hero__motes { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero__motes i {
+  position: absolute;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 12px var(--neon), 0 0 26px var(--glow-mint);
+  opacity: 0.7;
+  animation: mote-float 10s var(--ease-soft, ease) infinite alternate;
+}
+.hero__motes i:nth-child(1) { top: 24%; left: 8%;  animation-delay: 0s; }
+.hero__motes i:nth-child(2) { top: 64%; left: 16%; width: 5px; height: 5px; animation-delay: -3s; }
+.hero__motes i:nth-child(3) { top: 18%; right: 12%; width: 5px; height: 5px; animation-delay: -6s; }
+.hero__motes i:nth-child(4) { top: 72%; right: 7%;  animation-delay: -1.5s; }
+.hero__motes i:nth-child(5) { top: 44%; left: 46%;  width: 4px; height: 4px; animation-delay: -4.5s; }
+.hero__motes i:nth-child(6) { top: 86%; left: 60%;  width: 5px; height: 5px; animation-delay: -7.5s; }
+@keyframes mote-float {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(18px, -30px, 0); }
+}
+
+/* =========================================================================
+   Per-page hero figures (all transform/opacity-only animations)
+   ========================================================================= */
+
+/* --- Concierge: a guidance radar — rings, sweep, waypoints -------------- */
+.hero__figure--radar { transform-style: preserve-3d; }
+.radar-tilt {
+  position: absolute; inset: 0;
+  transform: rotateX(56deg);
+  transform-style: preserve-3d;
+}
+.radar-ring {
+  position: absolute; border-radius: 50%;
+  border: 1.4px solid rgba(110, 231, 183, 0.4);
+  box-shadow: 0 0 18px var(--glow-jade), inset 0 0 30px rgba(110, 231, 183, 0.07);
+}
+.radar-ring--1 { inset: 0; border-color: rgba(110, 231, 183, 0.55); }
+.radar-ring--2 { inset: 17%; }
+.radar-ring--3 { inset: 34%; border-color: rgba(127, 216, 196, 0.3); }
+.radar-sweep {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(110, 231, 183, 0.4), rgba(110, 231, 183, 0.05) 26%, transparent 40%);
+  -webkit-mask-image: radial-gradient(circle, transparent 12%, #000 13%);
+  mask-image: radial-gradient(circle, transparent 12%, #000 13%);
+  animation: radar-sweep 7s linear infinite;
+  opacity: 0.8;
+}
+@keyframes radar-sweep { to { transform: rotate(360deg); } }
+.radar-node {
+  position: absolute;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 14px var(--neon), 0 0 30px var(--glow-mint);
+  animation: node-pulse-soft 3s var(--ease-soft, ease) infinite;
+}
+.radar-node--1 { top: 22%; left: 26%; }
+.radar-node--2 { top: 38%; right: 18%; animation-delay: -1s; }
+.radar-node--3 { bottom: 20%; left: 42%; width: 9px; height: 9px; animation-delay: -2s; }
+@keyframes node-pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.35); opacity: 1; }
+}
+/* the small centre core (concierge radar): same glossy volume, gentler shading */
+.fig-core--sm {
+  inset: 44.5%;
+  box-shadow:
+    inset -3px -3px 9px rgba(3, 28, 22, 0.6),
+    inset 2px 2px 6px rgba(214, 255, 240, 0.4),
+    0 0 22px var(--neon), 0 0 52px var(--glow-jade);
+}
+
+/* --- Doctors: a wireframe sphere of care around a warm core ------------- */
+.fig-spin--slow { animation-duration: 44s; }
+.sph-ring {
+  position: absolute; inset: 4%;
+  border-radius: 50%;
+  border: 1.2px solid rgba(110, 231, 183, 0.34);
+  box-shadow: 0 0 16px rgba(28, 122, 105, 0.18);
+  transform: rotateY(var(--ry, 0deg));
+}
+.sph-ring--eq { transform: rotateX(78deg); border-color: rgba(110, 231, 183, 0.5); }
+
+/* --- Booking: a quiet time dial --------------------------------------- */
+.dial-ticks {
+  position: absolute; inset: 2%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(110, 231, 183, 0.55) 0deg 0.7deg,
+    transparent 0.7deg 7.5deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 60.5%, #000 61%, #000 70%, transparent 70.5%);
+  mask-image: radial-gradient(circle, transparent 60.5%, #000 61%, #000 70%, transparent 70.5%);
+  opacity: 0.8;
+}
+.dial-ring {
+  position: absolute; inset: 11%;
+  border-radius: 50%;
+  border: 1.4px solid rgba(110, 231, 183, 0.35);
+  box-shadow: 0 0 22px var(--glow-jade), inset 0 0 40px rgba(110, 231, 183, 0.06);
+}
+.dial-hand {
+  position: absolute; inset: 0;
+  animation: fig-spin 16s linear infinite;
+}
+.dial-hand i {
+  position: absolute;
+  top: 6.5%; left: calc(50% - 8px);
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 16px var(--neon), 0 0 36px var(--glow-mint);
+}
+.dial-slot {
+  position: absolute;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(110, 231, 183, 0.7);
+  box-shadow: 0 0 12px var(--glow-mint);
+  animation: node-pulse-soft 3.4s var(--ease-soft, ease) infinite;
+}
+.dial-slot--1 { top: 16%; right: 22%; }
+.dial-slot--2 { bottom: 14%; right: 34%; animation-delay: -1.2s; }
+.dial-slot--3 { bottom: 30%; left: 13%;  animation-delay: -2.3s; }
+
+/* --- Dashboard: a steady sonar — care that keeps checking in ------------ */
+.sonar-ring {
+  position: absolute; inset: 16%;
+  border-radius: 50%;
+  border: 1.6px solid rgba(110, 231, 183, 0.5);
+  animation: sonar 4.8s linear infinite;
+  opacity: 0;
+}
+.sonar-ring--2 { animation-delay: 1.6s; }
+.sonar-ring--3 { animation-delay: 3.2s; }
+@keyframes sonar {
+  0%   { transform: scale(0.42); opacity: 0; }
+  12%  { opacity: 0.85; }
+  100% { transform: scale(1.42); opacity: 0; }
+}
+
+/* === Big, centred scroll cue with a parallax drift === */
+.scroll-cue--hero {
+  margin: clamp(36px, 5vw, 64px) auto 0;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center;
+}
+.scroll-cue--hero .scroll-cue__txt {
+  font-size: clamp(1rem, 1.5vw, 1.22rem); letter-spacing: 0.34em;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), var(--neon) 50%, rgba(255, 255, 255, 0.45));
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: cue-shimmer 3.2s linear infinite;
+}
+.scroll-cue--hero .scroll-cue__chev { display: flex; flex-direction: column; align-items: center; color: var(--neon); }
+.scroll-cue--hero .scroll-cue__chev svg { width: 30px; height: 30px; filter: drop-shadow(0 0 8px var(--glow-mint)); }
+.scroll-cue--hero .scroll-cue__chev svg:nth-child(1) { animation: chev-bob 1.5s var(--ease) infinite; }
+.scroll-cue--hero .scroll-cue__chev svg:nth-child(2) { margin-top: -18px; opacity: 0.45; animation: chev-bob 1.5s var(--ease) infinite 0.18s; }
+@keyframes chev-bob { 0%, 100% { transform: translateY(-4px); } 50% { transform: translateY(5px); } }
+
+@media (max-width: 980px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__copy .display, .hero__copy .hero__sub { max-width: none; }
+  .hero__stage { display: none; }   /* keep small screens clean + fast */
+}
+
+/* -------------------------------------------------------------------------
+   4. Morphing text — words cross-fade with a blur lift
+   ------------------------------------------------------------------------- */
+.morph {
+  display: inline-grid;
+  vertical-align: baseline;
+}
+.morph__w {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(0.32em) scale(0.96);
+  /* opacity + transform only — transitioning filter repaints every frame */
+  transition: opacity 0.7s var(--ease, ease), transform 0.7s var(--ease, ease);
+  white-space: nowrap;
+}
+.morph__w.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+/* -------------------------------------------------------------------------
+   5. Aurora band — the one cinematic, futuristic moment
+   ------------------------------------------------------------------------- */
+.aurora {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(130% 130% at 50% -10%, #15303a 0%, #0e1a20 55%, #0a1216 100%);
+  border-radius: 0;
+  padding: clamp(72px, 10vw, 132px) 0;   /* full-bleed; .container handles gutters */
+  isolation: isolate;
+}
+.aurora__sky {
+  position: absolute; inset: -30% -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 55% at 20% 30%, rgba(110,231,183,0.40), transparent 60%),
+    radial-gradient(38% 50% at 78% 22%, rgba(96,165,250,0.32), transparent 60%),
+    radial-gradient(45% 60% at 55% 80%, rgba(52,211,153,0.30), transparent 62%);
+  filter: blur(20px);
+  animation: aurora-drift 16s var(--ease-soft, ease) infinite alternate;
+}
+.aurora__grid {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(127,216,196,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,216,196,0.10) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 75%);
+  transform: perspective(600px) rotateX(58deg) translateY(40%) scale(1.6);
+  transform-origin: top center;
+  opacity: 0.7;
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to   { transform: translate3d(4%, 3%, 0) scale(1.12); }
+}
+.aurora .eyebrow { color: var(--neon); }
+.aurora .eyebrow::before { background: var(--neon); }
+.aurora h2 { color: #fff; }
+.aurora .lead { color: rgba(255, 255, 255, 0.76); }
+.aurora__headline {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.aurora__headline .morph__w { color: var(--neon); text-shadow: 0 0 26px var(--glow-mint), 0 0 60px var(--glow-jade); }
+
+/* floating orbiting dots inside the aurora */
+.aurora__orbit { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.aurora__orbit i {
+  position: absolute;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 14px var(--neon), 0 0 28px var(--glow-mint);
+  opacity: 0.85;
+  animation: orbit-float 9s var(--ease-soft, ease) infinite alternate;
+}
+.aurora__orbit i:nth-child(1) { top: 22%; left: 12%; animation-delay: 0s; }
+.aurora__orbit i:nth-child(2) { top: 68%; left: 20%; width: 6px; height: 6px; animation-delay: -2s; }
+.aurora__orbit i:nth-child(3) { top: 30%; right: 16%; width: 5px; height: 5px; animation-delay: -4s; }
+.aurora__orbit i:nth-child(4) { top: 74%; right: 12%; animation-delay: -1s; }
+.aurora__orbit i:nth-child(5) { top: 48%; left: 50%; width: 5px; height: 5px; animation-delay: -3s; }
+@keyframes orbit-float {
+  from { transform: translateY(0) translateX(0); }
+  to   { transform: translateY(-26px) translateX(14px); }
+}
+
+/* -------------------------------------------------------------------------
+   6. SVG illustration — "horizon of care" (a calmer future, drawn)
+   ------------------------------------------------------------------------- */
+.illus {
+  width: 100%;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: radial-gradient(130% 130% at 50% 0%, #15303a 0%, #0d1519 72%);
+  border: 1px solid rgba(127, 216, 196, 0.14);
+}
+.illus svg { width: 100%; height: auto; display: block; }
+/* the drawing sequence is gated on .is-visible so it replays on every pass */
+.illus .signal-line { stroke-dasharray: 2200; stroke-dashoffset: 2200; }
+.illus.is-visible .signal-line { animation: draw-line 3.6s var(--ease, ease) forwards; }
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+.illus .signal-node {
+  opacity: 0; transform-box: fill-box; transform-origin: center;
+  filter: drop-shadow(0 0 6px var(--glow-mint));
+}
+.illus.is-visible .signal-node {
+  animation: node-in 0.6s var(--ease) forwards, node-breathe 3s var(--ease-soft, ease) infinite;
+}
+.illus .signal-label { opacity: 0; }
+.illus.is-visible .signal-label { animation: node-in 0.7s var(--ease) forwards; }
+@keyframes node-in { to { opacity: 1; } }
+/* transform-only pulse (animating drop-shadow repaints every frame) */
+@keyframes node-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+/* -------------------------------------------------------------------------
+   7. Scroll-triggered reveal variants (richer than the base .reveal)
+   ------------------------------------------------------------------------- */
+.reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: calc(var(--i,0) * 90ms); }
+.reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: calc(var(--i,0) * 90ms); }
+.reveal-zoom  { opacity: 0; transform: scale(0.92);       transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: calc(var(--i,0) * 90ms); }
+.reveal-left.is-visible, .reveal-right.is-visible, .reveal-zoom.is-visible { opacity: 1; transform: none; }
+
+/* depth parallax target (translateY driven by effects.js) */
+[data-parallax] { will-change: transform; }
+
+/* tilt-on-hover cards */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s var(--ease-soft, ease), box-shadow 0.3s var(--ease-soft, ease);
+}
+.tilt:hover { box-shadow: var(--shadow-lg), 0 0 30px var(--glow-jade); }
+
+/* magnetic + glowing CTA on hover */
+.btn--primary:hover, .nav__cta:hover { box-shadow: var(--shadow-md), 0 0 26px var(--glow-jade); }
+
+/* header CTA now sits centered between the logo and the nav links;
+   hidden on the mobile bar so it doesn't crowd the hamburger */
+@media (max-width: 1240px) { .nav__cta--center { display: none; } }
+
+/* -------------------------------------------------------------------------
+   9. Dark-premium redesign — night sections, video band, glass dashboard
+   ------------------------------------------------------------------------- */
+
+/* Full-bleed dark "night" section (cinematic, neon-lit) */
+.section--night {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: radial-gradient(130% 130% at 50% -10%, #15303a 0%, #0e1a20 55%, #0a1216 100%);
+}
+.section--night .eyebrow { color: var(--neon); }
+.section--night .eyebrow::before { background: var(--neon); }
+.section--night h1, .section--night h2, .section--night h3,
+.section--night .section-title, .section--night .statement { color: #fff; }
+.section--night .lead { color: rgba(255, 255, 255, 0.74); }
+.section--night .muted, .section--night .faint { color: rgba(255, 255, 255, 0.62); }
+.section--night .soft-divider { background: rgba(255, 255, 255, 0.12); }
+
+/* dark overrides for the Uncertainty → Clarity shift */
+.section--night .shift { border-top-color: rgba(255, 255, 255, 0.12); }
+.section--night .shift__row { border-bottom-color: rgba(255, 255, 255, 0.12); }
+.section--night .shift__from { color: rgba(255, 255, 255, 0.36); }
+.section--night .shift__to { color: #fff; text-shadow: 0 0 26px var(--glow-mint); }
+.section--night .shift__row:hover .shift__from { color: rgba(255, 255, 255, 0.6); }
+.section--night .shift__arrow {
+  background: rgba(110, 231, 183, 0.14);
+  color: var(--neon);
+  box-shadow: 0 0 20px var(--glow-jade);
+}
+
+/* glass panel used inside dark sections.
+   NB: no backdrop-filter here — a dozen blurring panels made scrolling
+   stutter; a translucent fill over the night gradient reads the same. */
+.glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-lg);
+  padding: clamp(20px, 2.4vw, 28px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.glass:hover { border-color: rgba(110, 231, 183, 0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 34px var(--glow-jade); }
+
+/* --- Health-dashboard preview ----------------------------------------- */
+.dash-preview { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; }
+.dash-preview .glass--wide { grid-column: 1 / -1; }
+@media (max-width: 760px) { .dash-preview { grid-template-columns: 1fr; } }
+
+.metric__h {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55); font-weight: 600; margin-bottom: 16px;
+}
+.metric__h svg { width: 15px; height: 15px; color: var(--neon); }
+.metric__big {
+  font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; color: #fff;
+}
+.metric__big small { font-size: 0.9rem; color: rgba(255, 255, 255, 0.55); font-family: var(--sans); margin-left: 6px; }
+.metric__big .beat { display: inline-block; color: var(--neon); animation: beat 1.05s var(--ease-soft, ease) infinite; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.28); } 28% { transform: scale(1); } }
+
+/* big live ECG line — a seamless marquee: the periodic wave is duplicated
+   and the group slides exactly one period, so the loop has no visible seam */
+.ekg-lg { width: 100%; height: 76px; margin-top: 14px; overflow: hidden; }
+/* pin the svg to the box height; without this it takes its intrinsic
+   viewBox-ratio height (taller than 76px) and the down-spikes get clipped */
+.ekg-lg svg { display: block; width: 100%; height: 100%; }
+.ekg-lg path {
+  fill: none; stroke: var(--neon); stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--glow-mint));
+}
+.ekg-track { animation: ekg-slide 7s linear infinite; }
+@keyframes ekg-slide { to { transform: translateX(-600px); } }
+
+/* SpO2-style metric ring on dark */
+.metric-ring {
+  --p: 98;
+  width: 116px; height: 116px; flex: none; border-radius: 50%;
+  background: conic-gradient(var(--neon) calc(var(--p) * 1%), rgba(255, 255, 255, 0.08) 0);
+  display: grid; place-items: center; position: relative;
+  box-shadow: 0 0 30px var(--glow-jade);
+}
+.metric-ring::before { content: ""; position: absolute; inset: 11px; border-radius: 50%; background: #0c1620; }
+.metric-ring b { position: relative; font-family: var(--serif); font-size: 1.7rem; color: #fff; }
+.metric-ring b small { font-size: 0.85rem; color: rgba(255,255,255,.55); }
+
+/* doctor "confirmed" mini-card */
+.doc-mini { display: flex; align-items: center; gap: 14px; }
+.doc-mini__av {
+  width: 54px; height: 54px; flex: none; border-radius: 16px;
+  background: linear-gradient(150deg, var(--accent), var(--accent-deep));
+  display: grid; place-items: center; color: #fff; font-family: var(--serif); font-size: 1.3rem;
+  box-shadow: 0 0 22px var(--glow-jade);
+}
+.doc-mini__t b { display: block; color: #fff; font-size: 1.02rem; }
+.doc-mini__t span { font-size: 0.86rem; color: rgba(255, 255, 255, 0.55); }
+.doc-mini__ok {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 600; color: var(--neon);
+  padding: 6px 12px; border-radius: var(--r-pill);
+  background: rgba(110, 231, 183, 0.12); border: 1px solid rgba(110, 231, 183, 0.3);
+}
+.doc-mini__ok svg { width: 13px; height: 13px; }
+
+/* --- Business case (ROI) stat cards ----------------------------------- */
+.roi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .roi-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .roi-grid { grid-template-columns: 1fr; } }
+.roi-card { display: flex; flex-direction: column; }
+.roi-card__fig {
+  font-family: var(--serif); font-size: clamp(2.3rem, 4vw, 3.1rem); line-height: 1;
+  color: var(--neon); text-shadow: 0 0 26px var(--glow-mint);
+}
+.roi-card__label { margin-top: 10px; font-weight: 600; color: #fff; font-size: 1rem; line-height: 1.3; }
+.roi-card__note { margin-top: 12px; font-size: 0.82rem; line-height: 1.5; color: rgba(255, 255, 255, 0.6); }
+.roi-card__note span { display: block; margin-top: 8px; font-size: 0.72rem; color: rgba(255, 255, 255, 0.55); }
+.roi-foot { margin-top: 32px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+.roi-foot__body { flex: 1; min-width: 300px; color: rgba(255, 255, 255, 0.74); }
+
+/* --- Full-bleed video band -------------------------------------------- */
+.videoband {
+  position: relative; overflow: hidden; isolation: isolate;
+  border-radius: 0;
+  color: #fff;
+  padding: clamp(96px, 16vw, 200px) 0;   /* full-bleed; .container handles gutters */
+}
+.videoband__bg {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(118%) contrast(104%);
+}
+.videoband__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(75% 75% at 50% 50%, rgba(8, 14, 18, 0.28), rgba(8, 14, 18, 0.58)),
+    linear-gradient(180deg, rgba(8, 14, 18, 0.34), rgba(8, 14, 18, 0.52)),
+    radial-gradient(55% 60% at 50% 26%, rgba(110, 231, 183, 0.16), transparent 70%);
+}
+.videoband .section-title { text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5); }
+.videoband .lead { text-shadow: 0 1px 18px rgba(0, 0, 0, 0.55); }
+.videoband .eyebrow { color: var(--neon); }
+.videoband .eyebrow::before { background: var(--neon); }
+.videoband h2 { color: #fff; }
+.videoband .lead { color: rgba(255, 255, 255, 0.82); }
+
+/* -------------------------------------------------------------------------
+   10. Concierge "A guided navigation experience" — night theme
+   ------------------------------------------------------------------------- */
+.section--night .pill {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: none;
+}
+.section--night .pill .dot { background: var(--neon); }
+.section--night .principle-list li { border-bottom-color: rgba(255, 255, 255, 0.1); }
+.section--night .principle-list .n { color: var(--neon); }
+.section--night .principle-list b { color: #fff; }
+.section--night .principle-list span { color: rgba(255, 255, 255, 0.6); }
+.section--night .not-note {
+  background: rgba(255, 214, 140, 0.06);
+  border-color: rgba(255, 214, 140, 0.22);
+}
+.section--night .not-note svg { color: #e8c984; }
+.section--night .not-note p { color: rgba(255, 229, 180, 0.82); }
+.section--night .not-note b { color: #ffe3ae; }
+
+.section--night .chat {
+  background: rgba(11, 24, 21, 0.88);
+  border-color: rgba(127, 216, 196, 0.18);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+.section--night .chat__bar {
+  background: rgba(255, 255, 255, 0.035);
+  border-bottom-color: rgba(255, 255, 255, 0.09);
+  backdrop-filter: none;
+}
+.section--night .chat__id b { color: #fff; }
+.section--night .chat__id span { color: rgba(255, 255, 255, 0.55); }
+.section--night .msg--bot .msg__bubble { background: rgba(255, 255, 255, 0.07); color: rgba(255, 255, 255, 0.9); }
+.section--night .msg__meta { color: rgba(255, 255, 255, 0.58); }
+.section--night .typing { background: rgba(255, 255, 255, 0.07); }
+.section--night .typing span { background: rgba(255, 255, 255, 0.5); }
+.section--night .chip {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+}
+.section--night .chip:hover {
+  border-color: var(--neon);
+  color: var(--neon);
+  background: rgba(110, 231, 183, 0.08);
+}
+.section--night .chat__compose { border-top-color: rgba(255, 255, 255, 0.09); }
+.section--night .chat__compose input {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+.section--night .chat__compose input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.section--night .chat__compose input:focus { border-color: var(--neon); }
+.section--night .chat__send { background: var(--accent); }
+.section--night .chat__send:hover { background: var(--neon); color: #06241c; }
+.section--night .pathway {
+  background: rgba(110, 231, 183, 0.07);
+  border-color: rgba(110, 231, 183, 0.22);
+}
+.section--night .pathway__h { color: var(--neon); }
+.section--night .pathway__item { border-top-color: rgba(110, 231, 183, 0.18); }
+.section--night .pathway__ic {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(110, 231, 183, 0.22);
+  color: var(--neon);
+}
+.section--night .pathway__t b { color: #fff; }
+.section--night .pathway__t span { color: rgba(255, 255, 255, 0.6); }
+.section--night .pathway__cta { background: var(--accent); }
+.section--night .pathway__cta:hover { background: var(--neon); color: #06241c; }
+
+/* -------------------------------------------------------------------------
+   11. Booking steps — number gives way to a checkmark once done
+   ------------------------------------------------------------------------- */
+.steps .dot .chk { display: none; width: 15px; height: 15px; }
+.steps li.done .dot .chk { display: block; }
+.steps li.done .dot .num { display: none; }
+
+/* -------------------------------------------------------------------------
+   12. Featured doctor — real portrait
+   ------------------------------------------------------------------------- */
+.feature-doc__portrait img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 55% 50%;   /* her face sits right-of-centre — pull the crop to centre it */
+}
+
+/* -------------------------------------------------------------------------
+   13. Mobile adaptation
+   ------------------------------------------------------------------------- */
+@media (max-width: 940px) {
+  .brand__name { font-size: 1.5rem; letter-spacing: 0.18em; }
+  .brand__name small { font-size: 0.7rem; max-width: 30ch; white-space: normal; line-height: 1.35; }
+  .footer .brand__name { font-size: 1.8rem; }
+  .footer .brand__name small { font-size: 0.78rem; }   /* match the header's mobile shrink */
+}
+@media (max-width: 600px) {
+  .hero { padding-top: clamp(108px, 14vh, 140px); }
+  .hero-meta { gap: 22px; }
+  .scroll-cue--hero .scroll-cue__txt { letter-spacing: 0.26em; }
+  .next-chapter { justify-content: center; text-align: center; }
+  .roi-foot { flex-direction: column; align-items: flex-start; }
+  .illus svg text { font-size: 32px; }
+  .slot-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__top { grid-template-columns: 1fr; gap: 28px; }
+  .footer__note { flex-direction: column; gap: 8px; }
+  .dash-preview { grid-template-columns: 1fr; }
+  .metric-ring { width: 96px; height: 96px; }
+}
+@media (max-width: 400px) {
+  .brand__name small { display: none; }
+  .nav__inner { gap: 12px; }
+}
+
+/* -------------------------------------------------------------------------
+   14. Reduced motion — strip everything kinetic, keep it legible
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .fx-halo { display: none !important; }
+  .hero__orbs, .hero__motes i, .fig-core, .fig-float, .fig-spin,
+  .fig-orbit--1, .fig-orbit--2,
+  .radar-sweep, .radar-node, .dial-hand, .dial-slot, .sonar-ring,
+  .plate .ekg2 path, .plate .pm-big .beat, .ekg-track,
+  .aurora__sky, .aurora__orbit i,
+  .ekg-lg path, .metric__big .beat,
+  .scroll-cue--hero .scroll-cue__txt, .scroll-cue__chev svg {
+    animation: none !important;
+    transform: none !important;
+  }
+  .sonar-ring { opacity: 0.75; }
+  .morph__w { position: static; opacity: 1; filter: none; transform: none; }
+  .morph__w:not(.is-active) { display: none; }
+  .reveal-left, .reveal-right, .reveal-zoom { opacity: 1; transform: none; }
+  .illus .signal-line { stroke-dashoffset: 0; }
+  .illus .signal-node, .illus .signal-label { opacity: 1; }
+}

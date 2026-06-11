@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reimagining Premium Healthcare Experience — Avenir</title>
+  <meta name="description" content="An independent concept study exploring how healthcare could evolve when patient needs become the starting point of every interaction." />
+  <link rel="icon" type="image/png" sizes="64x64" href="img/avenir-mark-64.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="img/avenir-mark-256.png" />
+  <link rel="apple-touch-icon" href="img/avenir-mark-256.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,500;1,18..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="effects.css" />
+</head>
+<body>
+
+  <!-- ===================== Navigation ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="Avenir — Reimagining Premium Healthcare Experience, home">
+        <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+      </a>
+      <a class="nav__cta nav__cta--center" href="concierge.html">Begin the journey
+        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+      <nav class="nav__menu" id="menu">
+        <ul class="nav__links">
+          <li><a href="index.html" aria-current="page"><span class="ch">01</span> Vision</a></li>
+          <li><a href="concierge.html"><span class="ch">02</span> Concierge</a></li>
+          <li><a href="doctors.html"><span class="ch">03</span> Doctors</a></li>
+          <li><a href="booking.html"><span class="ch">04</span> Booking</a></li>
+          <li><a href="dashboard.html"><span class="ch">05</span> Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== Hero ===================== -->
+    <section class="hero">
+      <div class="hero__orbs" aria-hidden="true">
+        <div class="orb orb--1"></div>
+        <div class="orb orb--2"></div>
+        <div class="orb orb--3"></div>
+      </div>
+      <div class="hero__motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow hero__eyebrow reveal">Chapter 01 · The Vision</span>
+            <h1 class="display reveal" style="--i:1">Healthcare designed around people.</h1>
+            <p class="lead hero__sub reveal" style="--i:2">
+              Nobody wakes up thinking in specialties, departments or referral codes. You wake up
+              with a pain that won't settle, a result you don't understand, a question you've been
+              turning over for weeks. This concept imagines healthcare that starts where you actually
+              start — and walks with you from not knowing to knowing, in one connected experience.
+            </p>
+            <div class="btn-row hero__cta reveal" style="--i:3">
+              <a class="btn btn--primary btn--lg" href="concierge.html">Begin the journey
+                <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="btn btn--ghost btn--lg" href="#shift">See the idea</a>
+            </div>
+            <div class="hero-meta reveal" style="--i:4">
+              <div><div class="n serif">5</div><div class="l">chapters, one journey</div></div>
+              <div><div class="n serif">Uncertainty</div><div class="l">moved toward clarity</div></div>
+              <div><div class="n serif">People first</div><div class="l">not departments</div></div>
+            </div>
+          </div>
+
+          <!-- 3D stage: the orbital "intelligence core", large and high -->
+          <div class="hero__stage" aria-hidden="true">
+            <div class="hero__halo"></div>
+            <div class="hero__figure">
+              <div class="fig-float">
+                <div class="fig-spin">
+                  <span class="fig-ring fig-ring--a"></span>
+                  <span class="fig-ring fig-ring--b"></span>
+                  <span class="fig-ring fig-ring--c"></span>
+                  <span class="fig-orbit fig-orbit--1"><span class="fig-node"></span></span>
+                  <span class="fig-orbit fig-orbit--2"><span class="fig-node"></span></span>
+                </div>
+                <span class="fig-core"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-cue scroll-cue--hero reveal" data-parallax="0.25">
+          <span class="scroll-cue__txt">Scroll to explore</span>
+          <span class="scroll-cue__chev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== The Problem (compare) ===================== -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">The problem</span>
+          <h2 class="section-title">Systems are organised around themselves.<br/>People are not.</h2>
+          <p class="lead">You arrive with a worry, not a department. Yet before anyone listens,
+            you're asked to already know which specialist you need, which form to fill, which door
+            is yours. The most anxious person in the room is handed the hardest job: working out a
+            system they've never had to learn until the moment they're frightened.</p>
+        </div>
+
+        <div class="compare reveal" style="--i:1; margin-top: 52px;">
+          <div class="compare__col compare__col--sys">
+            <div class="compare__label">How the system is organised</div>
+            <ul class="compare__list">
+              <li><span class="tick"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6.5" cy="6.5" r="5"/></svg></span> Departments</li>
+              <li><span class="tick"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6.5" cy="6.5" r="5"/></svg></span> Specialties</li>
+              <li><span class="tick"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6.5" cy="6.5" r="5"/></svg></span> Clinical pathways</li>
+              <li><span class="tick"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6.5" cy="6.5" r="5"/></svg></span> Administration</li>
+            </ul>
+          </div>
+          <div class="compare__col compare__col--ppl">
+            <div class="compare__label">How a person actually thinks</div>
+            <ul class="compare__list">
+              <li><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span> "My neck has been hurting for weeks."</li>
+              <li><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span> "I'm worried, and I don't know who to ask."</li>
+              <li><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span> "What happens next?"</li>
+              <li><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span> "I just want to feel better."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== The Friction / Shift ===================== -->
+    <section class="section section--night" id="shift">
+      <div class="aurora__sky" aria-hidden="true"></div>
+      <div class="aurora__grid" aria-hidden="true"></div>
+      <div class="aurora__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container">
+        <div class="head center reveal">
+          <span class="eyebrow center">The intention</span>
+          <h2 class="section-title">Every step should move a person forward.</h2>
+          <p class="lead mx-auto" style="max-width: 52ch;">Four quiet thresholds stand between a worry
+            and a recovery. This experience exists to carry someone across every one of them.</p>
+        </div>
+
+        <div class="shift" style="margin-top: 56px;">
+          <div class="shift__row reveal">
+            <div class="shift__from">Uncertainty</div>
+            <div class="shift__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="shift__to">Clarity</div>
+          </div>
+          <div class="shift__row reveal" style="--i:1">
+            <div class="shift__from">Anxiety</div>
+            <div class="shift__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="shift__to">Confidence</div>
+          </div>
+          <div class="shift__row reveal" style="--i:2">
+            <div class="shift__from">Confusion</div>
+            <div class="shift__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="shift__to">Guidance</div>
+          </div>
+          <div class="shift__row reveal" style="--i:3">
+            <div class="shift__from">Fragmentation</div>
+            <div class="shift__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="shift__to">Continuity</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== The Journey ===================== -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">The journey</span>
+          <h2 class="section-title">Five chapters, one continuous experience.</h2>
+          <p class="lead">Five chapters, each answering one honest question — in the order a worried
+            person actually asks it, not the order an org chart prefers.</p>
+        </div>
+
+        <div class="chapters" style="margin-top: 52px;">
+          <a class="chapter-card tilt reveal" href="concierge.html">
+            <div class="chapter-card__num">02</div>
+            <div class="chapter-card__body">
+              <div class="chapter-card__kicker">AI Medical Concierge</div>
+              <h3>A new way to begin</h3>
+              <p>Healthcare should begin with understanding. A calm starting point where you describe
+                what you feel — and are guided toward the right kind of care.</p>
+              <div class="chapter-card__q">“How does future healthcare begin?”</div>
+            </div>
+            <span class="chapter-card__go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="chapter-card tilt reveal" style="--i:1" href="doctors.html">
+            <div class="chapter-card__num">03</div>
+            <div class="chapter-card__body">
+              <div class="chapter-card__kicker">Doctor Experience</div>
+              <h3>Trust before the first appointment</h3>
+              <p>Understand who will help you, how they think and what to expect — long before you
+                meet. Human connection, not credentials alone.</p>
+              <div class="chapter-card__q">“Who will help me?”</div>
+            </div>
+            <span class="chapter-card__go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="chapter-card tilt reveal" style="--i:2" href="booking.html">
+            <div class="chapter-card__num">04</div>
+            <div class="chapter-card__body">
+              <div class="chapter-card__kicker">Booking Experience</div>
+              <h3>The next step, without friction</h3>
+              <p>No complex forms. No confusing schedules. Taking the next step should feel as natural
+                as the decision to take it.</p>
+              <div class="chapter-card__q">“How do I take the next step?”</div>
+            </div>
+            <span class="chapter-card__go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="chapter-card tilt reveal" style="--i:3" href="dashboard.html">
+            <div class="chapter-card__num">05</div>
+            <div class="chapter-card__body">
+              <div class="chapter-card__kicker">Patient Dashboard</div>
+              <h3>Care that continues</h3>
+              <p>Recovery, follow-up and communication in one calm place — so care doesn't end when
+                the appointment does.</p>
+              <div class="chapter-card__q">“What happens after treatment begins?”</div>
+            </div>
+            <span class="chapter-card__go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Health dashboard preview ===================== -->
+    <section class="section section--night">
+      <div class="aurora__sky" aria-hidden="true"></div>
+      <div class="aurora__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">A living picture of care</span>
+          <h2 class="section-title">Your health, calmly in view.</h2>
+          <p class="lead">No portal full of tabs you'll never open. Just the few things that matter,
+            in one continuous view — so you're never refreshing a screen at 11pm wondering whether
+            you've been forgotten.</p>
+        </div>
+
+        <div class="dash-preview reveal" style="--i:1; margin-top: 44px;">
+          <div class="glass glass--wide tilt">
+            <div class="metric__h">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
+              Heart rate · resting
+            </div>
+            <div class="metric__big">72<small>bpm</small>
+              <span class="beat" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.9 2 5.5 5.2 5.1 7 4.9 8.6 5.9 9.5 7.4 10.4 5.9 12 4.9 13.8 5.1 17 5.5 18.4 8.9 17 11.7 14.5 16.4 12 21 12 21z"/></svg></span>
+            </div>
+            <div class="ekg-lg" aria-hidden="true">
+              <svg viewBox="0 0 600 76" preserveAspectRatio="none">
+                <g class="ekg-track">
+                  <path d="M0 40 H80 l12 -26 l16 50 l14 -50 l10 26 H230 l12 -26 l16 50 l14 -50 l10 26 H420 l12 -26 l16 50 l14 -50 l10 26 H600"/>
+                  <path transform="translate(600 0)" d="M0 40 H80 l12 -26 l16 50 l14 -50 l10 26 H230 l12 -26 l16 50 l14 -50 l10 26 H420 l12 -26 l16 50 l14 -50 l10 26 H600"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div class="glass tilt">
+            <div class="metric__h">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 5.7 6 10a6 6 0 0 1-12 0c0-4.3 6-10 6-10z"/></svg>
+              Blood oxygen
+            </div>
+            <div style="display:flex; align-items:center; gap:20px;">
+              <div class="metric-ring"><b>98<small>%</small></b></div>
+              <div>
+                <b style="color:#fff; font-size:1.04rem;">Steady &amp; calm</b>
+                <p class="muted" style="margin-top:4px;">Comfortably within a healthy range.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass glass--wide" style="display:grid; gap:18px;">
+            <div class="doc-mini">
+              <span class="doc-mini__av">SR</span>
+              <span class="doc-mini__t"><b>Dr. Sarah Reid</b><span>Spine &amp; posture · matched to you</span></span>
+              <span class="doc-mini__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg> Confirmed</span>
+            </div>
+            <div class="doc-mini">
+              <span class="doc-mini__av" style="background:linear-gradient(150deg,#3a6ea5,#274d77);">↻</span>
+              <span class="doc-mini__t"><b>Follow-up scheduled</b><span>A gentle check-in · in 3 days</span></span>
+              <span class="doc-mini__ok" style="color:#9fc2e8; background:rgba(96,165,250,.12); border-color:rgba(96,165,250,.3);">Upcoming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== International ===================== -->
+    <section class="section bg-tint" id="international">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Without borders</span>
+          <h2 class="section-title">Care that travels with the patient.</h2>
+          <p class="lead">Sometimes the right care is in another city, another country, another
+            language. Sorting records, appointments and arrangements from afar shouldn't fall on the
+            patient. Here, it's handled before you board.</p>
+        </div>
+
+        <div class="grid grid-3" style="margin-top: 52px;">
+          <div class="card feature reveal">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></div>
+            <h3>Spoken in your language</h3>
+            <p>Guidance and conversation in the language a person is most comfortable in, so nothing
+              important is lost in translation.</p>
+          </div>
+          <div class="card feature reveal" style="--i:1">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M9 13h6M9 17h4"/></svg></div>
+            <h3>Documents understood</h3>
+            <p>Existing records and reports can be shared ahead of time, reviewed and clearly
+              summarised before anyone travels.</p>
+          </div>
+          <div class="card feature reveal" style="--i:2">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Planned before you arrive</h3>
+            <p>A coordinated plan is prepared in advance — so the journey, the visit and the care
+              all feel like one continuous experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Business case (ROI) ===================== -->
+    <section class="section section--night" id="business">
+      <div class="aurora__sky" aria-hidden="true"></div>
+      <div class="aurora__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">The business case</span>
+          <h2 class="section-title">Designing care around people is also the better economics.</h2>
+          <p class="lead">The friction that frightens patients is the same friction that drains
+            revenue — so removing it pays twice. The figures below are published industry estimates
+            and ranges, not promises, and real systems vary.</p>
+        </div>
+
+        <div class="roi-grid reveal" style="--i:1; margin-top: 44px;">
+          <div class="glass roi-card tilt">
+            <div class="roi-card__fig">~$200</div>
+            <div class="roi-card__label">lost per missed appointment</div>
+            <p class="roi-card__note">Each no-show wastes roughly an hour of clinician time that can't be backfilled; with about 1 in 5 outpatient slots never kept, reminders cut no-shows by 38–50%.<span>Curogram / HCI Innovation Group · Deane et al., Am. J. Medicine, 2010</span></p>
+          </div>
+          <div class="glass roi-card tilt">
+            <div class="roi-card__fig">45%</div>
+            <div class="roi-card__label">of referral revenue leaks out of network</div>
+            <p class="roi-card__note">Nearly half of patients referred by employed primary-care physicians end up treated elsewhere — a loss put near $388M a year for one large system.<span>The Advisory Board / Optum Advisory, 2019–2024</span></p>
+          </div>
+          <div class="glass roi-card tilt">
+            <div class="roi-card__fig">2.6×</div>
+            <div class="roi-card__label">net-margin gap, best vs. worst experience</div>
+            <p class="roi-card__note">Hospitals rated “excellent” on HCAHPS averaged 4.7% net margin against 1.8% for low-rated ones — experience is a revenue line, not a soft metric.<span>Deloitte Center for Health Solutions, 2016</span></p>
+          </div>
+          <div class="glass roi-card tilt">
+            <div class="roi-card__fig">~$50k</div>
+            <div class="roi-card__label">gross charges per international patient</div>
+            <p class="roi-card__note">58 US academic centres billed $2.9B across 58,012 self-pay international patients in 2018–19 — several times a domestic episode, won largely through pre-arrival coordination.<span>USCIPP / National Center for Healthcare Leadership, 2018–19</span></p>
+          </div>
+        </div>
+
+        <div class="roi-foot reveal" style="--i:2">
+          <p class="lead roi-foot__body">None of this needs a bigger marketing budget. The mechanism
+            is unglamorous and well documented: a 5-point lift in retention can raise practice profit
+            25–95%, a retained patient costs roughly $35–$85 to keep versus $247–$1,435 to acquire,
+            and the high-touch concierge model already renews at about 94%. The lever is the same one
+            patients feel — less uncertainty, fewer dropped threads, a path that holds together
+            between visits. Care built around people is simply the version that doesn't leak.</p>
+          <a class="btn btn--accent btn--lg" href="concierge.html">Begin the experience
+            <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Video band — why this matters ===================== -->
+    <section class="videoband">
+      <!-- no autoplay/preload: effects.js starts it only when scrolled into view,
+           so the 7.5MB file doesn't weigh down the initial load -->
+      <video class="videoband__bg" muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="video/why-bg.mp4" type="video/mp4" />
+      </video>
+      <div class="videoband__veil" aria-hidden="true"></div>
+      <div class="container">
+        <div class="center reveal" style="max-width: 720px; margin-inline: auto;">
+          <span class="eyebrow center">Why this matters</span>
+          <h2 class="section-title glow-text" style="margin-top: 18px;">Behind every symptom is a person, waiting to hear back.</h2>
+          <p class="lead" style="margin: 20px auto 0; max-width: 50ch;">Most of the fear isn't the diagnosis.
+            It's the silence before it — the days of not knowing who's looking, or whether anyone is.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Horizon illustration ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="head center reveal">
+          <span class="eyebrow center">The horizon</span>
+          <h2 class="section-title">One steady signal, all the way through.</h2>
+          <p class="lead mx-auto" style="max-width: 54ch;">From the first worry to recovery, your story
+            should follow you as one unbroken line. You tell it once. Nobody loses the thread. Nobody loses you.</p>
+        </div>
+        <figure class="illus reveal-zoom" style="margin-top: 48px;" data-parallax="0.08" aria-hidden="true">
+          <svg viewBox="0 0 1200 360" role="img" aria-label="One continuous line of care, from first worry to recovery">
+            <defs>
+              <linearGradient id="hz-line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#1C7A69"/><stop offset="0.5" stop-color="#6EE7B7"/><stop offset="1" stop-color="#34D399"/>
+              </linearGradient>
+              <radialGradient id="hz-node" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#eafff6"/><stop offset="100%" stop-color="#34D399"/>
+              </radialGradient>
+            </defs>
+            <!-- faint guide lines -->
+            <g stroke="rgba(127,216,196,0.09)" stroke-width="1">
+              <line x1="0" y1="120" x2="1200" y2="120"/>
+              <line x1="0" y1="190" x2="1200" y2="190"/>
+              <line x1="0" y1="260" x2="1200" y2="260"/>
+            </g>
+            <!-- the single continuous signal, drawn once -->
+            <path class="signal-line" d="M0 190 H470 l18 -64 l26 132 l22 -96 l14 28 H1200"
+                  fill="none" stroke="url(#hz-line)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                  style="filter: drop-shadow(0 0 8px rgba(110,231,183,0.5));"/>
+            <!-- milestone nodes + labels -->
+            <g font-family="Inter, sans-serif" font-size="16" fill="rgba(255,255,255,0.55)" text-anchor="middle">
+              <circle class="signal-node" cx="120" cy="190" r="6.5" fill="url(#hz-node)" style="animation-delay:.7s,.7s"/>
+              <text class="signal-label" x="120" y="252" style="animation-delay:1s">Symptom</text>
+              <circle class="signal-node" cx="320" cy="190" r="6.5" fill="url(#hz-node)" style="animation-delay:1.2s,1.2s"/>
+              <text class="signal-label" x="320" y="252" style="animation-delay:1.5s">Guidance</text>
+              <circle class="signal-node" cx="600" cy="190" r="6.5" fill="url(#hz-node)" style="animation-delay:1.9s,1.9s"/>
+              <text class="signal-label" x="600" y="252" style="animation-delay:2.2s">Doctor</text>
+              <circle class="signal-node" cx="860" cy="190" r="6.5" fill="url(#hz-node)" style="animation-delay:2.6s,2.6s"/>
+              <text class="signal-label" x="860" y="252" style="animation-delay:2.9s">Care</text>
+              <circle class="signal-node" cx="1080" cy="190" r="6.5" fill="url(#hz-node)" style="animation-delay:3.2s,3.2s"/>
+              <text class="signal-label" x="1080" y="252" style="animation-delay:3.5s">Recovery</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== Aurora — the future, felt ===================== -->
+    <section class="aurora">
+      <div class="aurora__sky" aria-hidden="true"></div>
+      <div class="aurora__grid" aria-hidden="true"></div>
+      <div class="aurora__orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container">
+        <div class="center reveal" style="max-width: 720px; margin-inline: auto; position: relative;">
+          <span class="eyebrow center">The feeling</span>
+          <h2 class="aurora__headline" style="margin-top: 20px;">
+            A future that feels like<br/>
+            <span class="morph" data-morph>
+              <span class="morph__w">clarity.</span>
+              <span class="morph__w">confidence.</span>
+              <span class="morph__w">calm.</span>
+              <span class="morph__w">continuity.</span>
+              <span class="morph__w">understanding.</span>
+            </span>
+          </h2>
+          <p class="lead" style="margin: 24px auto 0; max-width: 52ch;">Not louder technology — quieter
+            uncertainty. Care that feels more human precisely as it grows more capable, and never makes you feel like a case number.</p>
+          <div class="btn-row center" style="margin-top: 34px;">
+            <a class="btn btn--accent btn--lg" href="concierge.html">Begin with understanding
+              <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Closing statement ===================== -->
+    <section class="section">
+      <div class="container">
+        <p class="statement reveal">A person should leave thinking,<br/><em>“I'd feel calmer if healthcare worked this way.”</em></p>
+        <div class="btn-row center reveal" style="--i:1; margin-top: 44px;">
+          <a class="btn btn--accent btn--lg" href="concierge.html">Begin with understanding
+            <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html">
+            <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+          </a>
+          <p class="footer__agency-h">Avenir — Applied Future Lab</p>
+          <p class="muted footer__agency-p">We help organizations imagine, prototype and build the next
+            generation of products, services and customer experiences.</p>
+          <p class="muted footer__agency-p">We combine strategy, design and AI to transform complex systems
+            into intuitive products and services — from healthcare to finance, education to retail.</p>
+          <span class="concept-flag" style="margin-top:20px;"><span class="dot"></span> Concept &amp; design exploration — not a medical service</span>
+        </div>
+        <div>
+          <h4>The journey</h4>
+          <ul>
+            <li><a href="index.html">01 · Vision</a></li>
+            <li><a href="concierge.html">02 · AI Medical Concierge</a></li>
+            <li><a href="doctors.html">03 · Doctor Experience</a></li>
+            <li><a href="booking.html">04 · Booking Experience</a></li>
+            <li><a href="dashboard.html">05 · Patient Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>The idea</h4>
+          <ul>
+            <li><a href="#problem">The problem</a></li>
+            <li><a href="#shift">The intention</a></li>
+            <li><a href="#international">Without borders</a></li>
+            <li><a href="#business">The business case</a></li>
+            <li><a href="#journey">The five chapters</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__note">
+        <span>© <span data-year>2026</span> Avenir — Applied Future Lab. A concept study.</span>
+        <span>Designed to feel calm, intelligent and human.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="effects.js"></script>
+</body>
+</html>

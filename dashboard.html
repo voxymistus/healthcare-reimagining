@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard — Reimagining Premium Healthcare Experience · Avenir</title>
+  <meta name="description" content="Care that continues after the appointment. Recovery, follow-up, communication and progress — together in one calm place, so care doesn't end at the door." />
+  <link rel="icon" type="image/png" sizes="64x64" href="img/avenir-mark-64.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="img/avenir-mark-256.png" />
+  <link rel="apple-touch-icon" href="img/avenir-mark-256.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,500;1,18..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="effects.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="Avenir — Reimagining Premium Healthcare Experience, home">
+        <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+      </a>
+      <a class="nav__cta nav__cta--center" href="concierge.html">Start again
+        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+      <nav class="nav__menu" id="menu">
+        <ul class="nav__links">
+          <li><a href="index.html"><span class="ch">01</span> Vision</a></li>
+          <li><a href="concierge.html"><span class="ch">02</span> Concierge</a></li>
+          <li><a href="doctors.html"><span class="ch">03</span> Doctors</a></li>
+          <li><a href="booking.html"><span class="ch">04</span> Booking</a></li>
+          <li><a href="dashboard.html" aria-current="page"><span class="ch">05</span> Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== Hero ===================== -->
+    <section class="hero">
+      <div class="hero__orbs" aria-hidden="true">
+        <div class="orb orb--1"></div>
+        <div class="orb orb--3"></div>
+      </div>
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow hero__eyebrow reveal">Chapter 05 · Patient Dashboard</span>
+            <h1 class="display reveal" style="--i:1">Care that continues after the door closes.</h1>
+            <p class="lead hero__sub reveal" style="--i:2">
+              For most people, care ends the second the appointment does — and then the real questions
+              arrive. <em>Is this swelling normal? Did my results come back? Was I supposed to hear
+              something by now?</em> Recovery happens in exactly those silent gaps, and this is where the
+              experience stays beside you instead of leaving you to wonder.
+            </p>
+          </div>
+
+          <!-- 3D stage: a steady sonar + live health plaques -->
+          <div class="hero__stage hero__stage--sm" aria-hidden="true">
+            <div class="hero__halo"></div>
+            <div class="hero__figure hero__figure--sonar">
+              <div class="fig-float">
+                <span class="sonar-ring sonar-ring--1"></span>
+                <span class="sonar-ring sonar-ring--2"></span>
+                <span class="sonar-ring sonar-ring--3"></span>
+                <span class="fig-core fig-core--sm"></span>
+              </div>
+            </div>
+
+            <div class="plate plate--vitals">
+              <div class="pm-h"><span class="live"></span> Live · resting</div>
+              <div class="pm-big">72<small>bpm</small>
+                <span class="beat"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.9 2 5.5 5.2 5.1 7 4.9 8.6 5.9 9.5 7.4 10.4 5.9 12 4.9 13.8 5.1 17 5.5 18.4 8.9 17 11.7 14.5 16.4 12 21 12 21z"/></svg></span>
+              </div>
+              <div class="ekg2"><svg viewBox="0 0 600 50" preserveAspectRatio="none"><g class="ekg-track"><path d="M0 28 H120 l10 -20 l14 38 l12 -38 l8 20 H300 l10 -20 l14 38 l12 -38 l8 20 H600"/><path transform="translate(600 0)" d="M0 28 H120 l10 -20 l14 38 l12 -38 l8 20 H300 l10 -20 l14 38 l12 -38 l8 20 H600"/></g></svg></div>
+              <div class="pm-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 5.7 6 10a6 6 0 0 1-12 0c0-4.3 6-10 6-10z"/></svg> SpO₂ <b>98%</b> · steady &amp; calm</div>
+            </div>
+
+            <div class="plate plate--doc">
+              <div class="pd">
+                <span class="pd__av">SR</span>
+                <span class="pd__t"><b>Dr. Sarah Reid</b><span>Matched to you</span></span>
+              </div>
+              <span class="pd__ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg> Confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== The human need ===================== -->
+    <section class="section tight">
+      <div class="container narrow center">
+        <p class="display-2 reveal" style="font-family: var(--serif);">
+          The appointment is a moment.<br/>Getting better is the journey.
+        </p>
+        <p class="lead reveal" style="--i:1; margin-top: 22px;">
+          So the experience shouldn't disappear when you leave the room. It should quietly stay with
+          you — tracking progress, holding the plan, and keeping your care team close.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== The dashboard mockup ===================== -->
+    <section class="section bg-wash">
+      <div class="container">
+        <div class="head reveal" style="margin-bottom: 40px;">
+          <span class="eyebrow">One calm place</span>
+          <h2 class="section-title">Everything that comes after, gently in view.</h2>
+        </div>
+
+        <div class="dash-frame reveal" style="--i:1" aria-label="Patient dashboard concept">
+          <div class="dash-frame__top">
+            <div class="hello">Good afternoon, <span>Maria</span></div>
+            <span class="pill"><span class="dot"></span> Recovering well · Week 3 of 6</span>
+          </div>
+
+          <div class="dash-grid">
+
+            <!-- Recovery -->
+            <div class="widget">
+              <div class="widget__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Recovery</div>
+              <div class="ring-wrap">
+                <div class="ring" style="--p:68"><b>68<small>%</small></b></div>
+                <div class="rt">
+                  <b>On track</b>
+                  <p>Your neck mobility has improved steadily since week one. Keep going — you're ahead of plan.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Up next timeline -->
+            <div class="widget">
+              <div class="widget__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg> Your path</div>
+              <ul class="tl">
+                <li><span class="pt"></span><div><div class="tt">First consultation</div><div class="td">Completed · Dr. Marchetti</div></div></li>
+                <li class="now"><span class="pt"></span><div><div class="tt">Physiotherapy plan</div><div class="td">In progress · with Dr. Aaltonen</div></div></li>
+                <li><span class="pt"></span><div><div class="tt">Follow-up call</div><div class="td">In 4 days · 15 min</div></div></li>
+                <li><span class="pt"></span><div><div class="tt">Progress review</div><div class="td">In 3 weeks</div></div></li>
+              </ul>
+            </div>
+
+            <!-- Messages -->
+            <div class="widget">
+              <div class="widget__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> From your care team</div>
+              <div class="msg-thread">
+                <div class="mrow">
+                  <span class="mav">DA</span>
+                  <div class="mb"><div class="mn">Dr. Aaltonen · today</div>Lovely progress this week, Maria. Let's ease into the next set of movements — no rush at all.</div>
+                </div>
+                <div class="mrow">
+                  <span class="mav">EM</span>
+                  <div class="mb"><div class="mn">Dr. Marchetti · Tue</div>Your sleep notes are reassuring. We'll review everything together on our call.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next steps -->
+            <div class="widget widget--span2">
+              <div class="widget__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6.2-8.5"/></svg> This week, gently</div>
+              <div class="nextstep">
+                <div class="ns done">
+                  <span class="nsc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span class="nst">Morning mobility set — 8 minutes</span>
+                  <span class="nsd">Done 5 / 7 days</span>
+                </div>
+                <div class="ns done">
+                  <span class="nsc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span class="nst">Note how your sleep felt each night</span>
+                  <span class="nsd">Shared with Dr. Marchetti</span>
+                </div>
+                <div class="ns">
+                  <span class="nsc"></span>
+                  <span class="nst">Confirm your follow-up call</span>
+                  <span class="nsd">Takes 10 seconds</span>
+                </div>
+                <div class="ns">
+                  <span class="nsc"></span>
+                  <span class="nst">Add any question for your next review</span>
+                  <span class="nsd">Optional</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Care team -->
+            <div class="widget">
+              <div class="widget__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8M22 20a6.5 6.5 0 0 0-4-6"/></svg> Your care team</div>
+              <div class="msg-thread">
+                <div class="mrow"><span class="mav">EM</span><div class="mb"><div class="mn">Dr. Elena Marchetti</div>Internal Medicine · leading your care</div></div>
+                <div class="mrow"><span class="mav">DA</span><div class="mb"><div class="mn">Dr. David Aaltonen</div>Physiotherapy · your recovery</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== What continuity means ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Why it matters</span>
+          <h2 class="section-title">Continuity is the quiet part of feeling cared for.</h2>
+        </div>
+        <div class="grid grid-4" style="margin-top: 48px;">
+          <div class="card feature reveal">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <h3>Recovery</h3>
+            <p>Progress you can see, so motivation comes from feeling yourself improve.</p>
+          </div>
+          <div class="card feature reveal" style="--i:1">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Follow-up</h3>
+            <p>The next touchpoint is always clear — nothing slips through the cracks.</p>
+          </div>
+          <div class="card feature reveal" style="--i:2">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Communication</h3>
+            <p>Your care team stays a message away, without the wait or the worry.</p>
+          </div>
+          <div class="card feature reveal" style="--i:3">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.5"/></svg></div>
+            <h3>Continuity</h3>
+            <p>One thread connects every chapter — from first worry to full recovery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Closing CTA band ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <span class="eyebrow center">The journey, full circle</span>
+          <h2 class="section-title" style="margin-top: 18px;">“I'd feel calmer if healthcare worked this way.”</h2>
+          <p class="lead">From one uncertain sentence at midnight to the day you feel like yourself
+            again — a single connected experience that remembers you, follows up, and is built around
+            the person, not the chart.</p>
+          <div class="btn-row center">
+            <a class="btn btn--accent btn--lg" href="concierge.html">Experience it again
+              <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="index.html" style="border-color: rgba(255,255,255,0.25); color:#fff;">Back to the vision</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html">
+            <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+          </a>
+          <p class="footer__agency-h">Avenir — Applied Future Lab</p>
+          <p class="muted footer__agency-p">We help organizations imagine, prototype and build the next
+            generation of products, services and customer experiences.</p>
+          <p class="muted footer__agency-p">We combine strategy, design and AI to transform complex systems
+            into intuitive products and services — from healthcare to finance, education to retail.</p>
+          <span class="concept-flag" style="margin-top:20px;"><span class="dot"></span> Illustrative data, created for a concept study</span>
+        </div>
+        <div>
+          <h4>The journey</h4>
+          <ul>
+            <li><a href="index.html">01 · Vision</a></li>
+            <li><a href="concierge.html">02 · AI Medical Concierge</a></li>
+            <li><a href="doctors.html">03 · Doctor Experience</a></li>
+            <li><a href="booking.html">04 · Booking Experience</a></li>
+            <li><a href="dashboard.html">05 · Patient Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>On this page</h4>
+          <ul>
+            <li><a href="#">Your dashboard</a></li>
+            <li><a href="#">Why continuity matters</a></li>
+            <li><a href="index.html">Back to the vision</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__note">
+        <span>© <span data-year>2026</span> Avenir — Applied Future Lab. A concept study.</span>
+        <span>From uncertainty to clarity — one connected experience.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="effects.js"></script>
+</body>
+</html>

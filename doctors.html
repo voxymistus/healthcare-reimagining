@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Experience — Reimagining Premium Healthcare Experience · Avenir</title>
+  <meta name="description" content="Trust before the first appointment. Understand who will help you, how they think and what to expect — built on human connection, not credentials alone." />
+  <link rel="icon" type="image/png" sizes="64x64" href="img/avenir-mark-64.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="img/avenir-mark-256.png" />
+  <link rel="apple-touch-icon" href="img/avenir-mark-256.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,500;1,18..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="effects.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="Avenir — Reimagining Premium Healthcare Experience, home">
+        <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+      </a>
+      <a class="nav__cta nav__cta--center" href="booking.html">Book a visit
+        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+      <nav class="nav__menu" id="menu">
+        <ul class="nav__links">
+          <li><a href="index.html"><span class="ch">01</span> Vision</a></li>
+          <li><a href="concierge.html"><span class="ch">02</span> Concierge</a></li>
+          <li><a href="doctors.html" aria-current="page"><span class="ch">03</span> Doctors</a></li>
+          <li><a href="booking.html"><span class="ch">04</span> Booking</a></li>
+          <li><a href="dashboard.html"><span class="ch">05</span> Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== Hero ===================== -->
+    <section class="hero">
+      <div class="hero__orbs" aria-hidden="true">
+        <div class="orb orb--1"></div>
+        <div class="orb orb--3"></div>
+      </div>
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow hero__eyebrow reveal">Chapter 03 · Doctor Experience</span>
+            <h1 class="display reveal" style="--i:1">Trust begins before the first appointment.</h1>
+            <p class="lead hero__sub reveal" style="--i:2">
+              Usually all you get is a name and a wall of qualifications. But on the way to the appointment,
+              the questions you actually carry are quieter: <em>Will this person listen? Will they rush me?
+              Will I have to explain everything twice and still feel unheard?</em> So those are the ones we
+              answer first.
+            </p>
+          </div>
+
+          <!-- 3D stage: a wireframe sphere of care around a warm core -->
+          <div class="hero__stage hero__stage--sm" aria-hidden="true">
+            <div class="hero__halo"></div>
+            <div class="hero__figure hero__figure--sphere">
+              <div class="fig-float">
+                <div class="fig-spin fig-spin--slow">
+                  <span class="sph-ring" style="--ry:0deg"></span>
+                  <span class="sph-ring" style="--ry:30deg"></span>
+                  <span class="sph-ring" style="--ry:60deg"></span>
+                  <span class="sph-ring" style="--ry:90deg"></span>
+                  <span class="sph-ring" style="--ry:120deg"></span>
+                  <span class="sph-ring" style="--ry:150deg"></span>
+                  <span class="sph-ring sph-ring--eq"></span>
+                  <span class="fig-core fig-core--sm"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== The human need ===================== -->
+    <section class="section tight">
+      <div class="container narrow center">
+        <p class="display-2 reveal" style="font-family: var(--serif);">
+          Credentials tell you they're capable.<br/>Connection tells you you're in good hands.
+        </p>
+        <p class="lead reveal" style="--i:1; margin-top: 22px;">
+          Both matter. But only one of them calms the quiet worry a person carries into the room.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== Featured doctor ===================== -->
+    <section class="section bg-wash">
+      <div class="container">
+        <div class="feature-doc">
+          <div class="feature-doc__portrait reveal">
+            <img src="img/elena-marchetti.jpg" alt="Dr. Elena Marchetti, Internal Medicine" loading="lazy" />
+            <span class="frame-ring"></span>
+          </div>
+          <div class="reveal" style="--i:1">
+            <span class="eyebrow">In their words</span>
+            <blockquote>“My first job isn't to examine you. It's to make sure you don't have to repeat
+              your story for the fifth time and still feel like the eleventh chart of the morning.
+              Everything good in medicine starts the moment you stop bracing yourself.”</blockquote>
+            <div class="who">
+              <span class="dash"></span>
+              <div>
+                <b>Dr. Elena Marchetti</b><br/>
+                <span class="muted">Internal Medicine · 16 years of practice</span>
+              </div>
+            </div>
+            <p class="muted" style="margin-top: 22px; max-width: 46ch;">
+              Before your visit, you'll understand how Elena approaches care, the conditions she sees
+              most often, and exactly what your first conversation will feel like — unhurried, plain-spoken
+              and entirely about you.</p>
+            <div class="btn-row" style="margin-top: 26px;">
+              <a class="btn btn--primary" href="booking.html">Book with Dr. Marchetti
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Doctor grid ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">Who could help you</span>
+          <h2 class="section-title">A team you can know before you meet.</h2>
+          <p class="lead">Each profile leads with how a doctor actually thinks and what your visit will
+            feel like — so you walk in already knowing them, instead of starting over with a stranger
+            who hasn't read your notes.</p>
+        </div>
+
+        <div class="doctor-grid" style="margin-top: 48px;">
+
+          <article class="doctor reveal">
+            <div class="doctor__top" style="--g1:#e9f4ef;">
+              <div class="doctor__avatar">EM</div>
+              <div><div class="doctor__name">Dr. Elena Marchetti</div><div class="doctor__spec">Internal Medicine</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">I'd rather ask one more question than reach one quick conclusion.</p>
+              <div class="doctor__tags">
+                <span class="tag">Fatigue</span><span class="tag">General health</span><span class="tag">Prevention</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect an unhurried first conversation.</div>
+            </div>
+          </article>
+
+          <article class="doctor reveal" style="--i:1;">
+            <div class="doctor__top" style="--g1:#eaf1f7;">
+              <div class="doctor__avatar">JO</div>
+              <div><div class="doctor__name">Dr. Julian Okafor</div><div class="doctor__spec">Neurology</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">Headaches have a story. My job is to listen until it makes sense.</p>
+              <div class="doctor__tags">
+                <span class="tag">Headaches</span><span class="tag">Migraine</span><span class="tag">Sleep</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect clear explanations, no jargon.</div>
+            </div>
+          </article>
+
+          <article class="doctor reveal" style="--i:2;">
+            <div class="doctor__top" style="--g1:#efedf7;">
+              <div class="doctor__avatar">SR</div>
+              <div><div class="doctor__name">Dr. Sofia Reyes</div><div class="doctor__spec">Gastroenterology</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">Most worries shrink the moment someone explains what's actually happening.</p>
+              <div class="doctor__tags">
+                <span class="tag">Digestion</span><span class="tag">Nutrition</span><span class="tag">Comfort</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect a calm, step-by-step plan.</div>
+            </div>
+          </article>
+
+          <article class="doctor reveal">
+            <div class="doctor__top" style="--g1:#f6f1e8;">
+              <div class="doctor__avatar">DA</div>
+              <div><div class="doctor__name">Dr. David Aaltonen</div><div class="doctor__spec">Physiotherapy</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">Recovery isn't a list of exercises. It's a plan that fits your actual life.</p>
+              <div class="doctor__tags">
+                <span class="tag">Neck &amp; back</span><span class="tag">Posture</span><span class="tag">Movement</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect to leave with a plan you understand.</div>
+            </div>
+          </article>
+
+          <article class="doctor reveal" style="--i:1;">
+            <div class="doctor__top" style="--g1:#e9f4ef;">
+              <div class="doctor__avatar">NH</div>
+              <div><div class="doctor__name">Dr. Nadia Hassan</div><div class="doctor__spec">Dermatology</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">A skin concern is rarely just skin-deep. I treat the person, not the photo.</p>
+              <div class="doctor__tags">
+                <span class="tag">Skin health</span><span class="tag">Confidence</span><span class="tag">Care plans</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect honesty and reassurance.</div>
+            </div>
+          </article>
+
+          <article class="doctor reveal" style="--i:2;">
+            <div class="doctor__top" style="--g1:#eaf1f7;">
+              <div class="doctor__avatar">TK</div>
+              <div><div class="doctor__name">Dr. Tomas Krause</div><div class="doctor__spec">Cardiology</div></div>
+            </div>
+            <div class="doctor__body">
+              <p class="doctor__quote">I want you to leave understanding your heart, not just hearing about it.</p>
+              <div class="doctor__tags">
+                <span class="tag">Heart health</span><span class="tag">Blood pressure</span><span class="tag">Prevention</span>
+              </div>
+              <div class="doctor__expect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Expect patient, plain-language answers.</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== What to expect ===================== -->
+    <section class="section bg-tint">
+      <div class="container">
+        <div class="head reveal">
+          <span class="eyebrow">What your first visit feels like</span>
+          <h2 class="section-title">No surprises. Just a conversation.</h2>
+        </div>
+        <div class="grid grid-3" style="margin-top: 48px;">
+          <div class="card feature reveal">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>You're already understood</h3>
+            <p>Everything you shared with the concierge arrives first, so you never start from zero.</p>
+          </div>
+          <div class="card feature reveal" style="--i:1">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Time that isn't rushed</h3>
+            <p>The first conversation is unhurried by design. Questions are welcome, never an interruption.</p>
+          </div>
+          <div class="card feature reveal" style="--i:2">
+            <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6.2-8.5"/></svg></div>
+            <h3>A clear plan to leave with</h3>
+            <p>You leave knowing what's next — in language that feels like it was meant for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Next chapter ===================== -->
+    <section class="section tight">
+      <div class="container">
+        <a class="next-chapter reveal" href="booking.html">
+          <div>
+            <div class="nc-k">Next · Chapter 04</div>
+            <h3>Ready when you are — let's make the next step effortless</h3>
+          </div>
+          <span class="btn btn--ghost">Booking Experience
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html">
+            <span class="brand__name">AVENIR<small>Reimagining Premium Healthcare Experience</small></span>
+          </a>
+          <p class="footer__agency-h">Avenir — Applied Future Lab</p>
+          <p class="muted footer__agency-p">We help organizations imagine, prototype and build the next
+            generation of products, services and customer experiences.</p>
+          <p class="muted footer__agency-p">We combine strategy, design and AI to transform complex systems
+            into intuitive products and services — from healthcare to finance, education to retail.</p>
+          <span class="concept-flag" style="margin-top:20px;"><span class="dot"></span> Fictional profiles, created for a concept study</span>
+        </div>
+        <div>
+          <h4>The journey</h4>
+          <ul>
+            <li><a href="index.html">01 · Vision</a></li>
+            <li><a href="concierge.html">02 · AI Medical Concierge</a></li>
+            <li><a href="doctors.html">03 · Doctor Experience</a></li>
+            <li><a href="booking.html">04 · Booking Experience</a></li>
+            <li><a href="dashboard.html">05 · Patient Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>On this page</h4>
+          <ul>
+            <li><a href="#">Featured doctor</a></li>
+            <li><a href="#">The care team</a></li>
+            <li><a href="booking.html">Book a visit</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__note">
+        <span>© <span data-year>2026</span> Avenir — Applied Future Lab. A concept study.</span>
+        <span>Connection, not credentials alone.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="effects.js"></script>
+</body>
+</html>
